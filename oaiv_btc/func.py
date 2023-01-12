@@ -272,7 +272,11 @@ class Transactor:
             selected_utxos = self.select_inputs(amount_total_output + fee_estimate, transaction.network.dust_amount,
                                                 input_key_id, account_id, network, min_confirms, max_utxos, False)
             if not selected_utxos:
-                raise WalletError("Not enough unspent transaction outputs found")
+                selected_utxos = self.select_inputs(amount_total_output + fee_estimate, transaction.network.dust_amount,
+                                                    input_key_id, account_id, network, min_confirms, max_utxos, False,
+                                                    skip_dust_amounts=False)
+                if not selected_utxos:
+                    raise WalletError("Not enough unspent transaction outputs found")
             for utxo in selected_utxos:
                 amount_total_input += utxo['value']
                 # inp_keys, key = self._objects_by_key_id(utxo.key_id)
