@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "oaiv_btc"
+version = "0.0.1"
+description = "An extension of oaiv package that implements some specific BTC functionality"
+authors = [
+  "edazizovv",
+]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "oaiv_btc"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
